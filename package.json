@@ -1,0 +1,28 @@
+{
+  "name": "mqtt2http",
+  "version": "0.0.1",
+  "description": "Simple authenticated bridge between HTTP and MQTT",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "js-yaml": "^3.12.0",
+    "jsonwebtoken": "^8.4.0",
+    "morgan": "^1.9.1",
+    "mqtt": "^2.18.8",
+    "nodemon": "^1.18.9",
+    "winston": "^3.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "MQTT",
+    "HTTP",
+    "web"
+  ],
+  "author": "Stefaan Seys",
+  "license": "ISC"
+}

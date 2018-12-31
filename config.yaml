@@ -1,0 +1,15 @@
+# One of 'error', 'warn', 'info', 'verbose', debug', 'silly'
+loglevel: 'silly'
+secret : "U1Q87utv0m1RYEzzIIR3Inbw0qAOVS"
+users:
+  "test" : "test"
+  "stefaan" : "stefaan"
+  "michele" : "michele"
+mqtt:
+  retained: false
+  # URL to MQTT broker
+  url: 'mqtt://192.168.1.200'
+  # Configuration passed to the MQTT library
+  options:
+    username: 'mqtt_username'
+    password: 'mqtt_password'
