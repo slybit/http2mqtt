@@ -12,12 +12,15 @@ router.post('/login', (req,res) => {
                 expiresIn: 1440 // expires in 24 hours
           });
           res.json({
-            message: 'authentication done',
+            result: true,
             token: token
           });
 
     } else {
-        res.json({message:"invalid login"})
+        res.json({
+            result: false,
+            message: "invalid login"
+        })
     }
 })
 
