@@ -1,8 +1,8 @@
 const { createLogger, format, transports } = require('winston');
-const config = require('./config.js').parse();
+const { config } = require('./config.js');
 
 const logger = createLogger({
-    level: config.loglevel,
+    level: config.get('loglevel'),
     format: format.combine(
       format.colorize(),
       format.splat(),

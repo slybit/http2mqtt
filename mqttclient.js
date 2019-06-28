@@ -1,4 +1,4 @@
-const config = require('./config').parse();
+const { config }= require('./config.js');
 const logger = require('./logger');
 const mqtt = require('mqtt');
 
@@ -22,7 +22,7 @@ let setMqttHandlers = function(mqttClient) {
     mqttClient.on('message', function (topic, message, packet) {
         // ignore the initial retained messages
         if (!packet.retain) justStarted = false;
-        if (!justStarted || config.mqtt.retained) {
+        if (!justStarted || config.get('mqtt').retained) {
             // message is a buffer
             logger.silly("MQTT received %s : %s", topic, message)
             message = message.toString();
@@ -34,7 +34,7 @@ let setMqttHandlers = function(mqttClient) {
 }
 
 
-const mqttClient = mqtt.connect(config.mqtt.url, config.mqtt.options);
+const mqttClient = mqtt.connect(config.get('mqtt').url, config.get('mqtt').options);
 setMqttHandlers(mqttClient);
 
 module.exports = mqttClient;

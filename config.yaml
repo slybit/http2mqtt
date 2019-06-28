@@ -1,10 +1,6 @@
 # One of 'error', 'warn', 'info', 'verbose', debug', 'silly'
 loglevel: 'silly'
-secret : "U1Q87utv0m1RYEzzIIR3Inbw0qAOVS"
-users:
-  "test" : "test"
-  "stefaan" : "stefaan"
-  "michele" : "michele"
+port: 5000
 mqtt:
   retained: false
   # URL to MQTT broker

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const config = require('../config').parse();
+const {config, secrets} = require('../config.js');
 const logger = require('../logger');
 const jwt = require('jsonwebtoken');
 const mqttclient = require('../mqttclient.js');
@@ -12,7 +12,7 @@ router.use((req, res, next) => {
     // decode token
     if (token) {
         // verifies secret and checks if the token is expired
-        jwt.verify(token, config.secret, (err, decoded) => {
+        jwt.verify(token, secrets.get('secret'), (err, decoded) => {
             if (err) {
                 return res.json({ message: 'invalid token' });
             } else {
