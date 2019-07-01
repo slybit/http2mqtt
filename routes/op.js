@@ -25,10 +25,54 @@ router.use((req, res, next) => {
     }
 });
 
-router.get('/test', (req, res) => {
-    res.json({
-        result: true,
-    });
+/* ------------------------------------------------------------------------------------------
+Users
+------------------------------------------------------------------------------------------ */
+
+router.post('/users', (req, res) => {
+    let users = secrets.get('users');
+    if (!req.body.username) {
+        res.json({
+            result: false,
+            message: 'No username provided'
+        });
+        return;
+    } else if (users[req.body.username]) {
+        res.json({
+            result: false,
+            message: 'User already exists. Use DELETE first to update user.'
+        });
+    } else {
+        let pwd = req.body.password ? req.body.password : randtoken.uid(10);
+
+        secrets.set('users:' + req.body.username + ':password', pwd);
+        secrets.save();
+        res.json({
+            result: true,
+            message: 'User created.',
+            password: pwd,
+        });
+    }   
+})
+
+
+router.delete('/users/:userId', (req, res) => {
+    let users = secrets.get('users');
+    if (!users[req.body.username]) {
+        res.json({
+            result: false,
+            message: 'User not found.'
+        });
+    } else {
+        secrets.clear('users:' + req.body.username);
+        secrets.save();
+        res.json({
+            result: true,
+            message: 'User deleted.'
+        });
+    }
+
+    
 })
 
 module.exports = router;
